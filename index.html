@@ -1,7 +1,6 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <!-- Use correct character set. -->
   <meta charset="utf-8">
   <!-- Tell IE to use the latest, best version. -->
@@ -44,7 +43,7 @@
 
     var viewer = new Cesium.Viewer('cesiumContainer');
     /*
-    //åŠ è½½å¤©åœ°å›?
+    //加载天地图
 
     var viewer = new Cesium.Viewer('cesiumContainer',{
     baseLayerPicker:false,
@@ -85,7 +84,7 @@
 // Create an initial camera view
 
 //var initialPosition = new Cesium.Cartesian3.fromDegrees(-123.075, 44.045000, 5000.0);
-var initialPosition = new Cesium.Cartesian3.fromDegrees(118.9224,32.1033,2631.082799425431);//é‡‘é¹°å¥¥èŽ±
+var initialPosition = new Cesium.Cartesian3.fromDegrees(118.9224,32.1033,2631.082799425431);//金鹰奥莱
 //var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(7.1077496389876024807, -31.987223091598949054, 0.025883251314954971306);
 /*
 var homeCameraView = {
@@ -176,14 +175,14 @@ var debugModelMatrixPrimitive=scene.primitives.add(new Cesium.DebugModelMatrixPr
 
 
 
-//æ—‹è½¬è§’åº¦
+//旋转角度
 var radian = Cesium.Math.toRadians(3.0);
-// å°è½¦çš„é€Ÿåº¦
+// 小车的速度
 var speed = 0.1;
-// é€Ÿåº¦çŸ¢é‡
+// 速度矢量
 var speedVector = new Cesium.Cartesian3();
 var scene = viewer.scene;
-// å°è½¦çŠ¶æ€æ ‡å¿?
+// 小车状态标志
 var flag = {
     moveUp:false,
     moveDown:false,
@@ -191,24 +190,24 @@ var flag = {
     moveRight:false
 };
 
-// æ ¹æ®é”®ç›˜æŒ‰é”®è¿”å›žæ ‡å¿—
+// 根据键盘按键返回标志
 function setFlagStatus(key,value) {
     switch (key.keyCode){
         case 65:
-            // å·?
+            // 左
             flag.moveLeft = value;
             break;
         case 87:
-            // ä¸?
+            // 上
             flag.moveUp = value;
             break;
         case 68:
-            // å?
+            // 右
             flag.moveRight = value;
             break;
         case 83:
             flag.moveDown = value;
-            // ä¸?
+            // 下
             break;
     }
 }
@@ -341,17 +340,17 @@ viewer.clock.onTick.addEventListener((clock)=>{
 
 });
 
-// ç§»åŠ¨å°è½¦
+// 移动小车
 function moveCar(isUP) {
-    // è®¡ç®—é€Ÿåº¦çŸ©é˜µ
+    // 计算速度矩阵
     if(isUP>0){
         speedVector = Cesium.Cartesian3.multiplyByScalar(Cesium.Cartesian3.UNIT_X,speed,speedVector);
     }else{
         speedVector = Cesium.Cartesian3.multiplyByScalar(Cesium.Cartesian3.UNIT_X,-speed,speedVector);
     }
-    // æ ¹æ®é€Ÿåº¦è®¡ç®—å‡ºä¸‹ä¸€ä¸ªä½ç½®çš„åæ ‡
+    // 根据速度计算出下一个位置的坐标
     position0 = Cesium.Matrix4.multiplyByPoint(planePrimitive0.modelMatrix ,speedVector, position0);
-    // å°è½¦ç§»åŠ¨
+    // 小车移动
     Cesium.Transforms.headingPitchRollToFixedFrame(position0, hpRoll, Cesium.Ellipsoid.WGS84,converter0,planePrimitive0.modelMatrix);
     Cesium.Transforms.headingPitchRollToFixedFrame(position0, hpRoll, Cesium.Ellipsoid.WGS84,converter0,debugModelMatrixPrimitive.modelMatrix);
 }
