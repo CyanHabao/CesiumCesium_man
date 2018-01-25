@@ -6,3 +6,5 @@ DEMO演示地址：https://cyanhabao.github.io/CesiumCesium_man/
 人物模型第一视角
 ![image](https://github.com/CyanHabao/CesiumCesium_man/blob/master/roleModelAngle.png)
 
+其他视角
+![image](https://github.com/CyanHabao/CesiumCesium_man/blob/master/OtherAngle.png)
