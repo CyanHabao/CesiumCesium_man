@@ -18,16 +18,25 @@
         position: relative;
       }
       #mainRoleAngle{
+        width: 250px;
+        height:110px;
         position: absolute;
         left:10px;
         top:10px;
+        background-color: white;
+        opacity: 0.8;
+        padding: 10px;
       }
   </style>
 </head>
 <body>
   <div id="cesiumContainer"></div>
   <div id="mainRoleAngle">
-            <p>following the roleModel</p>
+            <p>W: move forward</p>
+            <p>A: move left</p>
+            <p>S: move backward</p>
+            <p>D: move right</p>
+            <span>following the roleModel</span>
             <input id="fromBehind" type="checkbox">
   </div>
 
