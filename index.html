@@ -177,12 +177,12 @@ var debugModelMatrixPrimitive=scene.primitives.add(new Cesium.DebugModelMatrixPr
 
 //旋转角度
 var radian = Cesium.Math.toRadians(3.0);
-// 小车的速度
+// 速度
 var speed = 0.1;
 // 速度矢量
 var speedVector = new Cesium.Cartesian3();
 var scene = viewer.scene;
-// 小车状态标志
+// 状态标志
 var flag = {
     moveUp:false,
     moveDown:false,
@@ -222,7 +222,7 @@ document.addEventListener('keyup',(e)=>{
 
 
 
-//var fromBehind = document.getElementById('fromBehind');
+var fromBehind = document.getElementById('fromBehind');
 
 viewer.clock.onTick.addEventListener((clock)=>{
 
@@ -340,7 +340,7 @@ viewer.clock.onTick.addEventListener((clock)=>{
 
 });
 
-// 移动小车
+// 移动
 function moveCar(isUP) {
     // 计算速度矩阵
     if(isUP>0){
@@ -350,7 +350,7 @@ function moveCar(isUP) {
     }
     // 根据速度计算出下一个位置的坐标
     position0 = Cesium.Matrix4.multiplyByPoint(planePrimitive0.modelMatrix ,speedVector, position0);
-    // 小车移动
+    // 移动
     Cesium.Transforms.headingPitchRollToFixedFrame(position0, hpRoll, Cesium.Ellipsoid.WGS84,converter0,planePrimitive0.modelMatrix);
     Cesium.Transforms.headingPitchRollToFixedFrame(position0, hpRoll, Cesium.Ellipsoid.WGS84,converter0,debugModelMatrixPrimitive.modelMatrix);
 }
